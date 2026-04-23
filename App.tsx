@@ -25,7 +25,74 @@ import authorPortrait from './images/author-portrait.png';
 
 // --- Components ---
 
-const Navbar = () => {
+const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  useEffect(() => {
+    if (isOpen) {
+      const script = document.createElement('script');
+      script.src = "https://link.msgsndr.com/js/form_embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+      
+      // Prevent scrolling when modal is open
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
+    }
+  }, [isOpen]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+    >
+      <div 
+        className="absolute inset-0 bg-maroon-dark/95 backdrop-blur-sm" 
+        onClick={onClose} 
+      />
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl h-[85vh] md:h-[600px] border border-gold/20"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 z-[110] p-2 bg-maroon-dark/10 hover:bg-maroon-dark/20 rounded-full transition-colors text-maroon-dark"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
+        
+        <div className="w-full h-full overflow-auto pt-10">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+            style={{ width: '100%', height: '100%', border: 'none' }}
+            id="inline-iheeRBxRvFxBrVakPUJC" 
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="maha mantras form "
+            data-height="443"
+            data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
+            data-form-id="iheeRBxRvFxBrVakPUJC"
+            title="maha mantras form "
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -72,6 +139,7 @@ const Navbar = () => {
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
+            onClick={onOpenModal}
             className="px-6 py-2 bg-gold text-maroon-dark text-xs uppercase font-bold tracking-widest rounded-full"
           >
             Pre-Order
@@ -109,7 +177,13 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="mt-8 px-8 py-4 bg-gold text-maroon-dark text-lg uppercase font-bold tracking-widest rounded-full">
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenModal();
+                }}
+                className="mt-8 px-8 py-4 bg-gold text-maroon-dark text-lg uppercase font-bold tracking-widest rounded-full"
+              >
                 Pre-Order Now
               </button>
             </div>
@@ -120,7 +194,7 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 100]);
   const rotate = useTransform(scrollY, [0, 500], [0, 15]);
@@ -145,7 +219,10 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            <button className="w-full sm:w-auto px-10 py-5 bg-gold text-maroon-dark font-bold uppercase tracking-widest rounded-full shadow-xl shadow-gold/10">
+            <button 
+              onClick={onOpenModal}
+              className="w-full sm:w-auto px-10 py-5 bg-gold text-maroon-dark font-bold uppercase tracking-widest rounded-full shadow-xl shadow-gold/10"
+            >
               Pre-Order Now
             </button>
             <button 
@@ -635,7 +712,7 @@ const Testimonials = () => {
   );
 };
 
-const PreOrderSection = () => {
+const PreOrderSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 12,
     hours: 8,
@@ -690,7 +767,10 @@ const PreOrderSection = () => {
             <div className="flex items-baseline gap-4">
               <span className="text-parchment text-5xl font-serif">₹499</span>
             </div>
-            <button className="w-full md:w-auto px-16 py-6 bg-gold text-maroon-dark font-bold uppercase tracking-[0.2em] rounded-full shadow-2xl shadow-gold/20">
+            <button 
+              onClick={onOpenModal}
+              className="w-full md:w-auto px-16 py-6 bg-gold text-maroon-dark font-bold uppercase tracking-[0.2em] rounded-full shadow-2xl shadow-gold/20"
+            >
               Reserve Your Copy Now
             </button>
             <p className="text-xs text-parchment/40 uppercase tracking-widest">
@@ -807,23 +887,100 @@ const Footer = () => {
   );
 };
 
+const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  useEffect(() => {
+    if (isOpen) {
+      const script = document.createElement('script');
+      script.src = "https://link.msgsndr.com/js/form_embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+      
+      // Prevent scrolling when modal is open
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
+    }
+  }, [isOpen]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+    >
+      <div 
+        className="absolute inset-0 bg-maroon-dark/95 backdrop-blur-sm" 
+        onClick={onClose} 
+      />
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl h-[85vh] md:h-[600px] border border-gold/20"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 z-[110] p-2 bg-maroon-dark/10 hover:bg-maroon-dark/20 rounded-full transition-colors text-maroon-dark"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
+        
+        <div className="w-full h-full overflow-auto pt-10">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+            style={{ width: '100%', height: '100%', border: 'none' }}
+            id="inline-inline-iheeRBxRvFxBrVakPUJC" 
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="maha mantras form "
+            data-height="443"
+            data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
+            data-form-id="iheeRBxRvFxBrVakPUJC"
+            title="maha mantras form "
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 // --- Main App ---
 
 export default function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
-      <Navbar />
-      <Hero />
+      <Navbar onOpenModal={openModal} />
+      <Hero onOpenModal={openModal} />
       <AuthoritySection />
       <ChaptersSection />
       <BenefitsSection />
       <PreviewSection />
       <AuthorSection />
       <Testimonials />
-      <PreOrderSection />
+      <PreOrderSection onOpenModal={openModal} />
       <GlossarySection />
       <FinalImpact />
       <Footer />
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <PreOrderModal isOpen={isModalOpen} onClose={closeModal} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
