@@ -530,20 +530,27 @@ const PreviewSection = () => {
 
 const AuthorSection = () => {
   return (
-    <section id="author" className="py-20 md:py-24 px-4 md:px-6 bg-parchment text-maroon-dark">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
-        <div className="w-full md:w-1/3">
+    <section id="author" className="py-20 md:py-24 px-4 md:px-6 bg-maroon-dark text-parchment relative overflow-hidden">
+      {/* Decorative Background Element */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-gold/5 blur-[120px] rounded-full" />
+      
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
+        <div className="w-full md:w-5/12">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="aspect-square rounded-2xl overflow-hidden relative bg-black shadow-2xl shadow-black/20"
+              className="aspect-[4/5] rounded-3xl overflow-hidden relative group"
             >
+              <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <img 
                 src={authorPortrait} 
                 alt="Sakshi Shree" 
-                className="w-full h-full object-contain object-center"
+                className="w-full h-full object-cover object-top mix-blend-screen"
               />
+              {/* Gold frame overlay */}
+              <div className="absolute inset-4 border border-gold/20 rounded-2xl pointer-events-none" />
             </motion.div>
         </div>
         <div className="flex-1">
@@ -552,19 +559,19 @@ const AuthorSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-gold-muted uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Enlightened Master</span>
-            <h2 className="text-5xl md:text-7xl font-serif mb-8">Sakshi Shree</h2>
-            <p className="text-xl text-maroon-dark/70 font-light leading-relaxed mb-8">
+            <span className="text-gold uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Enlightened Master</span>
+            <h2 className="text-5xl md:text-7xl font-serif mb-8 text-parchment">Sakshi Shree</h2>
+            <p className="text-xl text-parchment/70 font-light leading-relaxed mb-8">
               Born Rām Krishna Upādhyāya, Sakshi Shree is a rare triad: an enlightened master, a householder, and a former civil servant. 
               Mentored by Swami Sudarshanacharya Ji Maharaj, he bridges the gap between ancient Himalayan wisdom and the modern boardroom.
             </p>
-            <p className="text-lg text-maroon-dark/60 font-light leading-relaxed mb-12 italic border-l-4 border-gold/20 pl-8">
+            <p className="text-lg text-parchment/60 font-light leading-relaxed mb-12 italic border-l-4 border-gold/30 pl-8">
               "I do not teach any religion; I bring out the best of philosophies to enhance the lives of those I touch. 
               The battlefield of Kurukshetra has not disappeared—it has only multiplied. It now exists within every individual navigating ambition and conscience."
             </p>
             <div className="flex items-center gap-6">
-              <div className="w-12 h-px bg-gold-muted" />
-              <span className="font-serif italic text-xl">Founder of the Science Divine Foundation</span>
+              <div className="w-12 h-px bg-gold" />
+              <span className="font-serif italic text-xl text-gold/80">Founder of the Science Divine Foundation</span>
             </div>
           </motion.div>
         </div>
