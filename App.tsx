@@ -691,7 +691,7 @@ const AuthorSection = () => {
             </p>
             <div className="flex items-center gap-6">
               <div className="w-12 h-px bg-gold" />
-              <span className="font-serif italic text-xl text-gold/80">Founder of the Science Divine Foundation</span>
+              <span className="font-serif italic text-xl text-gold/80">Guided by the Wisdom of the Gita</span>
             </div>
           </motion.div>
         </div>
