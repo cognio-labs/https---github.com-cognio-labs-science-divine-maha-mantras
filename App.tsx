@@ -28,16 +28,12 @@ import authorPortrait from './images/author-portrait.png';
 const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   useEffect(() => {
     if (isOpen) {
-      const script = document.createElement('script');
-      script.src = "https://link.msgsndr.com/js/form_embed.js";
-      script.async = true;
-      document.body.appendChild(script);
-      
       // Prevent scrolling when modal is open
+      const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       
       return () => {
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = previousOverflow;
       };
     }
   }, [isOpen]);
@@ -898,6 +894,17 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const embedSrc = 'https://link.msgsndr.com/js/form_embed.js';
+    const existingScript = document.querySelector(`script[src="${embedSrc}"]`);
+    if (existingScript) return;
+
+    const script = document.createElement('script');
+    script.src = embedSrc;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
