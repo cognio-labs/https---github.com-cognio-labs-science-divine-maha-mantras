@@ -137,7 +137,7 @@ const Hero = () => {
           className="text-left order-2 lg:order-1"
         >
           <span className="text-gold uppercase tracking-[0.5em] text-xs mb-6 block font-bold">The Sacred Discipline</span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif mb-8 tracking-tight leading-[0.9] text-parchment">
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif mb-8 tracking-tight leading-tight md:leading-[0.9] text-parchment">
             Maha <span className="text-gold-gradient italic">Mantras</span>
           </h1>
           <p className="text-xl md:text-2xl text-parchment/60 font-light tracking-wide mb-12 max-w-lg">
@@ -212,7 +212,7 @@ const AuthoritySection = () => {
           transition={{ duration: 0.8 }}
         >
           <LotusGeometry className="w-16 h-16 text-gold/20 mx-auto mb-12" />
-          <h2 className="text-4xl md:text-6xl font-serif mb-12 leading-tight text-parchment">
+          <h2 className="text-3xl md:text-6xl font-serif mb-12 leading-tight text-parchment">
             The world is loud. <br />
             <span className="text-gold italic">Your mind doesn't have to be.</span>
           </h2>
@@ -339,7 +339,7 @@ const ChaptersSection = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20 gap-8">
           <div className="max-w-2xl">
             <span className="text-gold uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Sacred Journey</span>
-            <h2 className="text-5xl md:text-8xl font-serif leading-none text-parchment">The Ten Maha Mantras</h2>
+            <h2 className="text-4xl md:text-8xl font-serif leading-tight md:leading-none text-parchment">The Ten Maha Mantras</h2>
           </div>
           <p className="text-parchment/40 uppercase tracking-widest text-xs font-medium pb-4">
             Extracted from 364 Pages of Wisdom
@@ -474,7 +474,7 @@ const PreviewSection = () => {
             viewport={{ once: true }}
           >
             <span className="text-gold uppercase tracking-[0.3em] text-xs mb-4 block font-bold">Inside the Pages</span>
-            <h2 className="text-5xl md:text-7xl font-serif mb-8 italic text-parchment">A Mental Operating System</h2>
+            <h2 className="text-4xl md:text-7xl font-serif mb-8 italic text-parchment">A Mental Operating System</h2>
             <p className="text-xl text-parchment/60 font-light leading-relaxed mb-12">
               This is not a motivational book. It is a technical manual for the human mind. 
               Each page is designed with Apple-level precision to ensure the knowledge 
@@ -560,7 +560,7 @@ const AuthorSection = () => {
             viewport={{ once: true }}
           >
             <span className="text-gold uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Enlightened Master</span>
-            <h2 className="text-5xl md:text-7xl font-serif mb-8 text-parchment">Sakshi Shree</h2>
+            <h2 className="text-4xl md:text-7xl font-serif mb-8 text-parchment">Sakshi Shree</h2>
             <p className="text-xl text-parchment/70 font-light leading-relaxed mb-8">
               Born Rām Krishna Upādhyāya, Sakshi Shree is a rare triad: an enlightened master, a householder, and a former civil servant. 
               Mentored by Swami Sudarshanacharya Ji Maharaj, he bridges the gap between ancient Himalayan wisdom and the modern boardroom.
@@ -671,7 +671,7 @@ const PreOrderSection = () => {
           <span className="inline-block px-4 py-1 bg-gold/10 border border-gold/30 rounded-full text-gold text-[10px] uppercase tracking-widest mb-8">
             Limited First Edition
           </span>
-          <h2 className="text-5xl md:text-8xl font-serif mb-8 text-parchment">Reserve Your Legacy</h2>
+          <h2 className="text-4xl md:text-8xl font-serif mb-8 text-parchment">Reserve Your Legacy</h2>
           <p className="text-xl text-parchment/60 font-light mb-10 md:mb-12 max-w-2xl mx-auto">
             Pre-order the premium hardcover edition today and receive the exclusive 
             "Sacred Sound" digital companion and a hand-signed bookmark.
@@ -716,7 +716,7 @@ const FinalImpact = () => {
         transition={{ duration: 1.5 }}
         className="max-w-4xl relative z-10"
       >
-        <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-parchment max-w-3xl mx-auto">
+        <h2 className="text-2xl md:text-6xl lg:text-7xl font-serif italic leading-tight text-parchment max-w-3xl mx-auto">
           “This is not just a book. <br />
           It is a discipline system for your mind.”
         </h2>
