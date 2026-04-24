@@ -864,23 +864,18 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         </button>
         
         <div className="w-full h-full overflow-auto pt-10">
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-            style={{ width: '100%', height: '100%', border: 'none' }}
-            id="inline-inline-iheeRBxRvFxBrVakPUJC" 
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="maha mantras form "
-            data-height="443"
-            data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
-            data-form-id="iheeRBxRvFxBrVakPUJC"
-            title="maha mantras form "
-          />
+          <div style={{ width: '100%', maxWidth: '600px', margin: 'auto' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+              style={{ width: '100%', height: '650px', border: 'none', borderRadius: '10px', overflow: 'hidden' }}
+              id="inline-iheeRBxRvFxBrVakPUJC"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-activation-type="alwaysActivated"
+              data-deactivation-type="neverDeactivate"
+              title="maha mantras form"
+            />
+          </div>
         </div>
       </motion.div>
     </motion.div>
