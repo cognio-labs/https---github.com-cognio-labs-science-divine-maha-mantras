@@ -356,7 +356,7 @@ const ChaptersSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {chapters.map((chapter, i) => (
             <motion.div
               key={chapter.num}
@@ -364,32 +364,34 @@ const ChaptersSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="relative bg-gradient-to-br from-white/[0.03] to-transparent p-5 md:p-6 rounded-[1.5rem] border border-gold/10 hover:border-gold/30 transition-all duration-500 group flex flex-col h-full"
+              className={`relative bg-gradient-to-br from-white/[0.03] to-transparent p-6 md:p-8 rounded-[2rem] border border-gold/10 hover:border-gold/30 transition-all duration-500 group flex flex-col h-full ${
+                i === 9 ? 'lg:col-start-2' : ''
+              }`}
             >
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <span className="font-serif text-gold/30 text-3xl group-hover:text-gold transition-colors duration-500">{chapter.num}</span>
-                  <LotusGeometry className="w-6 h-6 text-gold/10 group-hover:text-gold/30 transition-all" />
+                <div className="flex items-start justify-between mb-6">
+                  <span className="font-serif text-gold/30 text-4xl group-hover:text-gold transition-colors duration-500">{chapter.num}</span>
+                  <LotusGeometry className="w-8 h-8 text-gold/10 group-hover:text-gold/30 transition-all" />
                 </div>
                 
-                <div className="mb-4">
-                  <h3 className="text-xl font-serif text-parchment leading-tight mb-2 min-h-[3rem] line-clamp-2">{chapter.title}</h3>
-                  <p className="text-gold/50 font-serif italic text-[11px] leading-snug line-clamp-2">"{chapter.verse}"</p>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-serif text-parchment leading-tight mb-3 min-h-[3.5rem]">{chapter.title}</h3>
+                  <p className="text-gold/50 font-serif italic text-sm leading-snug line-clamp-2">"{chapter.verse}"</p>
                 </div>
                 
-                <div className="space-y-3 flex-grow">
-                  <div className="space-y-1">
-                    <span className="text-[8px] uppercase tracking-[0.3em] text-gold font-bold">The Essence</span>
-                    <p className="text-parchment/60 font-light leading-relaxed text-[13px] line-clamp-3">
+                <div className="space-y-4 flex-grow">
+                  <div className="space-y-2">
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold">The Essence</span>
+                    <p className="text-parchment/60 font-light leading-relaxed text-[15px] line-clamp-4">
                       {chapter.desc}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-gold/10">
-                  <div className="p-3 bg-maroon-dark/40 rounded-xl border border-white/5 shadow-inner">
-                    <span className="text-[8px] uppercase tracking-[0.3em] text-gold font-bold block mb-1">Key Takeaway</span>
-                    <p className="text-parchment/90 font-medium text-[12px] leading-snug italic line-clamp-2">
+                <div className="mt-8 pt-6 border-t border-gold/10">
+                  <div className="p-4 bg-maroon-dark/40 rounded-2xl border border-white/5 shadow-inner">
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold block mb-2">Key Takeaway</span>
+                    <p className="text-parchment/90 font-medium text-sm md:text-base leading-snug italic">
                       "{chapter.takeaway}"
                     </p>
                   </div>
