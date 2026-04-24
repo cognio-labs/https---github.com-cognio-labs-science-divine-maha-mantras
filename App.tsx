@@ -823,10 +823,13 @@ const Footer = () => {
 const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   useEffect(() => {
     if (isOpen) {
-      const script = document.createElement('script');
-      script.src = "https://link.msgsndr.com/js/form_embed.js";
-      script.async = true;
-      document.body.appendChild(script);
+      // Prevent duplicate script injection
+      if (!document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = "https://link.msgsndr.com/js/form_embed.js";
+        script.async = true;
+        document.body.appendChild(script);
+      }
       
       // Prevent scrolling when modal is open
       document.body.style.overflow = 'hidden';
@@ -842,7 +845,7 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
     >
       <div 
         className="absolute inset-0 bg-maroon-dark/95 backdrop-blur-sm" 
@@ -853,7 +856,7 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl h-[85vh] md:h-[600px] border border-gold/20"
+        className="relative w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl border border-gold/20 flex flex-col"
       >
         <button 
           onClick={onClose}
@@ -863,11 +866,11 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="w-full h-full overflow-hidden flex items-center justify-center">
-          <div style={{ width: '100%', maxWidth: '600px', height: '100%' }}>
+        <div className="w-full overflow-hidden flex items-start justify-center">
+          <div className="w-full" style={{ height: 'auto', minHeight: '400px' }}>
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-              style={{ width: '100%', height: '100%', border: 'none', borderRadius: '10px', overflow: 'hidden', display: 'block', background: 'transparent' }}
+              style={{ width: '100%', height: '480px', border: 'none', borderRadius: '10px', overflow: 'hidden', display: 'block', background: 'transparent' }}
               id="inline-iheeRBxRvFxBrVakPUJC"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
