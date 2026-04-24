@@ -398,7 +398,7 @@ const ChaptersSection = () => {
                 </div>
               </div>
             </motion.div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-gold/10 border border-gold/10 p-4 md:p-6">
         </div>
       </div>
     </section>
@@ -406,23 +406,23 @@ const ChaptersSection = () => {
 };
 
 const BenefitsSection = () => {
-  const benefits = [
+              className="relative bg-maroon-dark p-6 md:p-8 flex flex-col gap-6 rounded-lg min-h-[220px]"
     {
       title: "Mental Clarity",
       desc: "Dissolve the fog of overthinking and see your path with absolute precision.",
-      icon: <Compass className="w-6 h-6" />,
+                  <span className="font-serif text-gold/20 text-3xl md:text-4xl">{chapter.num}</span>
     },
-    {
-      title: "Focus & Discipline",
+                    <h3 className="text-2xl md:text-3xl font-serif text-parchment">{chapter.title}</h3>
+                    <p className="text-gold/40 font-serif italic text-sm md:text-lg max-w-xl leading-snug">"{chapter.verse}"</p>
       desc: "Train your attention to stay where you place it, for as long as you need.",
       icon: <Zap className="w-6 h-6" />,
     },
-    {
-      title: "Inner Stability",
-      desc: "Remain unmoved by external events, anchored in your own spiritual center.",
+              
+              <div className="grid md:grid-cols-2 gap-6 border-t border-gold/5 pt-6 mt-3">
+                <div className="space-y-4">
       icon: <Anchor className="w-6 h-6" />,
     },
-    {
+                    <p className="text-parchment/70 font-light leading-relaxed text-sm md:text-lg">
       title: "Spiritual Strength",
       desc: "Access the latent power within your DNA through sacred sound vibrations.",
       icon: <Shield className="w-6 h-6" />,
@@ -431,10 +431,10 @@ const BenefitsSection = () => {
       title: "Detachment",
       desc: "Observe the world without being consumed by it. Freedom from chaos.",
       icon: <BookOpen className="w-6 h-6" />,
-    },
+                <div className="space-y-4 flex flex-col justify-between">
     {
       title: "Deep Peace",
-      desc: "A silence that is not empty, but full of presence and awareness.",
+                    <p className="text-parchment/80 font-medium text-sm md:text-lg leading-relaxed">
       icon: <Star className="w-6 h-6" />,
     }
   ];
