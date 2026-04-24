@@ -356,7 +356,7 @@ const ChaptersSection = () => {
           </p>
         </div>
 
-        <div className="grid gap-px bg-gold/10 border border-gold/10">
+        <div className="flex flex-col gap-8">
           {chapters.map((chapter, i) => (
             <motion.div
               key={chapter.num}
@@ -364,37 +364,44 @@ const ChaptersSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="relative bg-maroon-dark p-8 md:p-16 flex flex-col gap-10"
+              className="relative bg-gradient-to-br from-white/[0.03] to-transparent p-8 md:p-12 lg:p-16 rounded-[2.5rem] border border-gold/10 hover:border-gold/30 transition-all duration-500 group"
             >
-              <div className="flex flex-col md:flex-row gap-8 md:items-start justify-between">
-                <div className="flex items-baseline gap-6">
-                  <span className="font-serif text-gold/20 text-4xl">{chapter.num}</span>
-                  <div className="space-y-2">
-                    <h3 className="text-3xl md:text-5xl font-serif text-parchment">{chapter.title}</h3>
-                    <p className="text-gold/40 font-serif italic text-lg max-w-xl leading-snug">"{chapter.verse}"</p>
-                  </div>
-                </div>
+              {/* Decorative Corner Element */}
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
+                <LotusGeometry className="w-24 h-24 text-gold" />
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-12 border-t border-gold/5 pt-10">
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <span className="text-[10px] uppercase tracking-widest text-gold font-bold">The Essence</span>
-                    <p className="text-parchment/70 font-light leading-relaxed text-lg">
-                      {chapter.desc}
-                    </p>
-                  </div>
-                  <div className="p-6 bg-gold/5 border-l-2 border-gold/30 italic text-parchment/90">
-                    {chapter.translation}
+
+              <div className="relative z-10">
+                <div className="flex flex-col md:flex-row gap-8 md:items-start justify-between mb-10">
+                  <div className="flex items-baseline gap-6">
+                    <span className="font-serif text-gold/30 text-5xl md:text-6xl group-hover:text-gold transition-colors duration-500">{chapter.num}</span>
+                    <div className="space-y-3">
+                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif text-parchment leading-tight">{chapter.title}</h3>
+                      <p className="text-gold/50 font-serif italic text-xl max-w-2xl leading-snug">"{chapter.verse}"</p>
+                    </div>
                   </div>
                 </div>
+                
+                <div className="grid lg:grid-cols-2 gap-12 border-t border-gold/10 pt-10">
+                  <div className="space-y-8">
+                    <div className="space-y-3">
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">The Essence</span>
+                      <p className="text-parchment/70 font-light leading-relaxed text-xl">
+                        {chapter.desc}
+                      </p>
+                    </div>
+                    <div className="p-8 bg-gold/5 border-l-2 border-gold/40 italic text-parchment/90 rounded-r-2xl text-lg">
+                      {chapter.translation}
+                    </div>
+                  </div>
 
-                <div className="space-y-6 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <span className="text-[10px] uppercase tracking-widest text-gold font-bold">Key Takeaway</span>
-                    <p className="text-parchment/80 font-medium text-xl leading-relaxed">
-                      {chapter.takeaway}
-                    </p>
+                  <div className="space-y-8 flex flex-col justify-center">
+                    <div className="space-y-4 p-8 bg-maroon-dark/40 rounded-3xl border border-white/5 shadow-inner">
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Key Takeaway</span>
+                      <p className="text-parchment/90 font-medium text-2xl md:text-3xl leading-snug italic">
+                        "{chapter.takeaway}"
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
