@@ -356,7 +356,7 @@ const ChaptersSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {chapters.map((chapter, i) => (
             <motion.div
               key={chapter.num}
@@ -364,44 +364,34 @@ const ChaptersSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="relative bg-gradient-to-br from-white/[0.03] to-transparent p-8 md:p-12 lg:p-16 rounded-[2.5rem] border border-gold/10 hover:border-gold/30 transition-all duration-500 group"
+              className="relative bg-gradient-to-br from-white/[0.03] to-transparent p-6 md:p-8 rounded-[2rem] border border-gold/10 hover:border-gold/30 transition-all duration-500 group flex flex-col h-full"
             >
-              {/* Decorative Corner Element */}
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
-                <LotusGeometry className="w-24 h-24 text-gold" />
-              </div>
-
-              <div className="relative z-10">
-                <div className="flex flex-col md:flex-row gap-8 md:items-start justify-between mb-10">
-                  <div className="flex items-baseline gap-6">
-                    <span className="font-serif text-gold/30 text-5xl md:text-6xl group-hover:text-gold transition-colors duration-500">{chapter.num}</span>
-                    <div className="space-y-3">
-                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif text-parchment leading-tight">{chapter.title}</h3>
-                      <p className="text-gold/50 font-serif italic text-xl max-w-2xl leading-snug">"{chapter.verse}"</p>
-                    </div>
-                  </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-6">
+                  <span className="font-serif text-gold/30 text-4xl group-hover:text-gold transition-colors duration-500">{chapter.num}</span>
+                  <LotusGeometry className="w-8 h-8 text-gold/10 group-hover:text-gold/30 transition-all" />
                 </div>
                 
-                <div className="grid lg:grid-cols-2 gap-12 border-t border-gold/10 pt-10">
-                  <div className="space-y-8">
-                    <div className="space-y-3">
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">The Essence</span>
-                      <p className="text-parchment/70 font-light leading-relaxed text-xl">
-                        {chapter.desc}
-                      </p>
-                    </div>
-                    <div className="p-8 bg-gold/5 border-l-2 border-gold/40 italic text-parchment/90 rounded-r-2xl text-lg">
-                      {chapter.translation}
-                    </div>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-serif text-parchment leading-tight mb-2 min-h-[3.5rem]">{chapter.title}</h3>
+                  <p className="text-gold/50 font-serif italic text-sm leading-snug line-clamp-2">"{chapter.verse}"</p>
+                </div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="space-y-2">
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold">The Essence</span>
+                    <p className="text-parchment/60 font-light leading-relaxed text-sm line-clamp-3">
+                      {chapter.desc}
+                    </p>
                   </div>
+                </div>
 
-                  <div className="space-y-8 flex flex-col justify-center">
-                    <div className="space-y-4 p-8 bg-maroon-dark/40 rounded-3xl border border-white/5 shadow-inner">
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Key Takeaway</span>
-                      <p className="text-parchment/90 font-medium text-2xl md:text-3xl leading-snug italic">
-                        "{chapter.takeaway}"
-                      </p>
-                    </div>
+                <div className="mt-6 pt-6 border-t border-gold/10">
+                  <div className="p-4 bg-maroon-dark/40 rounded-2xl border border-white/5 shadow-inner">
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold block mb-2">Key Takeaway</span>
+                    <p className="text-parchment/90 font-medium text-sm leading-snug italic">
+                      "{chapter.takeaway}"
+                    </p>
                   </div>
                 </div>
               </div>
