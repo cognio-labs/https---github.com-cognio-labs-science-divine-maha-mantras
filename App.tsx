@@ -863,17 +863,18 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="w-full h-full overflow-auto pt-10">
-          <div style={{ width: '100%', maxWidth: '600px', margin: 'auto' }}>
+        <div className="w-full h-full overflow-hidden flex items-center justify-center">
+          <div style={{ width: '100%', maxWidth: '600px', height: '100%' }}>
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-              style={{ width: '100%', height: '650px', border: 'none', borderRadius: '10px', overflow: 'hidden' }}
+              style={{ width: '100%', height: '100%', border: 'none', borderRadius: '10px', overflow: 'hidden', display: 'block', background: 'transparent' }}
               id="inline-iheeRBxRvFxBrVakPUJC"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
               data-activation-type="alwaysActivated"
               data-deactivation-type="neverDeactivate"
               title="maha mantras form"
+              frameBorder={0}
             />
           </div>
         </div>
