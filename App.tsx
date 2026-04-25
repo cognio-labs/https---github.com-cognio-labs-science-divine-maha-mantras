@@ -429,6 +429,9 @@ const benefits = [
 ];
 
 const BenefitsSection = () => {
+  return (
+    <section id="benefits" className="py-20 md:py-24 px-4 md:px-6 bg-parchment text-maroon-dark">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 md:mb-20">
           <span className="text-gold-muted uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Transformation</span>
           <h2 className="text-5xl md:text-7xl font-serif">What You Will Gain</h2>
