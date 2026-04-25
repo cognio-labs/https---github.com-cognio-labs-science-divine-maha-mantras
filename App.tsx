@@ -398,50 +398,37 @@ const ChaptersSection = () => {
                 </div>
               </div>
             </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-gold/10 border border-gold/10 p-4 md:p-6">
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-const BenefitsSection = () => {
-              className="relative bg-maroon-dark p-6 md:p-8 flex flex-col gap-6 rounded-lg min-h-[220px]"
-    {
-      title: "Mental Clarity",
-      desc: "Dissolve the fog of overthinking and see your path with absolute precision.",
-                  <span className="font-serif text-gold/20 text-3xl md:text-4xl">{chapter.num}</span>
-    },
-                    <h3 className="text-2xl md:text-3xl font-serif text-parchment">{chapter.title}</h3>
-                    <p className="text-gold/40 font-serif italic text-sm md:text-lg max-w-xl leading-snug">"{chapter.verse}"</p>
-      desc: "Train your attention to stay where you place it, for as long as you need.",
-      icon: <Zap className="w-6 h-6" />,
-    },
-              
-              <div className="grid md:grid-cols-2 gap-6 border-t border-gold/5 pt-6 mt-3">
-                <div className="space-y-4">
-      icon: <Anchor className="w-6 h-6" />,
-    },
-                    <p className="text-parchment/70 font-light leading-relaxed text-sm md:text-lg">
-      title: "Spiritual Strength",
-      desc: "Access the latent power within your DNA through sacred sound vibrations.",
-      icon: <Shield className="w-6 h-6" />,
-    },
-    {
-      title: "Detachment",
-      desc: "Observe the world without being consumed by it. Freedom from chaos.",
-      icon: <BookOpen className="w-6 h-6" />,
-                <div className="space-y-4 flex flex-col justify-between">
-    {
-      title: "Deep Peace",
-                    <p className="text-parchment/80 font-medium text-sm md:text-lg leading-relaxed">
-      icon: <Star className="w-6 h-6" />,
-    }
-  ];
+const benefits = [
+  {
+    title: "Mental Clarity",
+    desc: "Dissolve the fog of overthinking and see your path with absolute precision.",
+    icon: <Zap className="w-6 h-6" />,
+  },
+  {
+    title: "Spiritual Strength",
+    desc: "Access the latent power within your DNA through sacred sound vibrations.",
+    icon: <Shield className="w-6 h-6" />,
+  },
+  {
+    title: "Detachment",
+    desc: "Observe the world without being consumed by it. Freedom from chaos.",
+    icon: <BookOpen className="w-6 h-6" />,
+  },
+  {
+    title: "Deep Peace",
+    desc: "Sink into the heart's quiet and remain steady in any storm.",
+    icon: <Star className="w-6 h-6" />,
+  },
+];
 
-  return (
-    <section id="benefits" className="py-20 md:py-24 px-4 md:px-6 bg-parchment text-maroon-dark">
-      <div className="max-w-7xl mx-auto">
+const BenefitsSection = () => {
         <div className="text-center mb-16 md:mb-20">
           <span className="text-gold-muted uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Transformation</span>
           <h2 className="text-5xl md:text-7xl font-serif">What You Will Gain</h2>
