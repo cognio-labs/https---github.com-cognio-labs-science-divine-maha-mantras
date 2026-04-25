@@ -3,6 +3,9 @@
 
 declare module 'react';
 declare module 'react-dom';
+declare module 'react-dom/client';
+declare module 'motion/react';
+declare module 'lucide-react';
 
 // Allow importing image assets (png/jpg/jpeg/webp) — Vite already provides similar shims,
 // but keep a fallback here to ensure the editor recognises them.
