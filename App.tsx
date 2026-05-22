@@ -175,7 +175,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
             <button 
               className="w-full sm:w-auto px-10 py-5 border border-parchment/20 text-parchment font-bold uppercase tracking-widest rounded-full hover:bg-white/5 active:scale-95"
             >
-              Register for event
+              Register for future event
             </button>
           </div>
         </motion.div>
