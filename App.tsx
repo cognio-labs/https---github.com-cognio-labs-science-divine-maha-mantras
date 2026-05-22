@@ -798,23 +798,15 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
   useEffect(() => {
     if (isOpen) {
-      setIsLoading(true); // Reset loading state when opening
-      // Inject script
+      setIsLoading(true);
       if (!document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]')) {
         const script = document.createElement('script');
         script.src = "https://link.msgsndr.com/js/form_embed.js";
         script.async = true;
         document.body.appendChild(script);
       }
-
-      // Prevent scrolling and fix text color visibility for the form
       document.body.style.overflow = 'hidden';
-      document.body.style.color = '#4A0404';
-      
-      return () => {
-        document.body.style.overflow = 'unset';
-        document.body.style.color = '';
-      };
+      return () => { document.body.style.overflow = 'unset'; };
     }
   }, [isOpen]);
 
@@ -823,62 +815,59 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4"
     >
       <div 
-        className="absolute inset-0 bg-maroon-dark/95 backdrop-blur-sm" 
+        className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-sm" 
         onClick={onClose} 
       />
       
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-gold/20 flex flex-col max-h-[95vh] overflow-y-auto text-maroon-dark"
+        exit={{ opacity: 0, scale: 0.98, y: 10 }}
+        className="relative w-full max-w-md bg-white rounded-2xl md:rounded-3xl shadow-2xl border border-gold/20 flex flex-col max-h-[85vh] overflow-hidden text-maroon-dark"
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-[110] p-2 bg-maroon-dark/10 hover:bg-maroon-dark/20 rounded-full transition-colors text-maroon-dark"
+          className="absolute top-4 right-4 z-[120] w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white backdrop-blur-md rounded-full transition-all text-maroon-dark shadow-lg border border-maroon-dark/5"
           aria-label="Close"
         >
           <X size={20} />
         </button>
         
-        <div className="form-container relative min-h-[400px]">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
-              />
-            </div>
-          )}
-          <iframe
-            onLoad={() => setIsLoading(false)}
-            src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              border: 'none', 
-              borderRadius: '8px',
-              opacity: isLoading ? 0 : 1,
-              transition: 'opacity 0.5s ease-in-out'
-            }}
-            id="inline-iheeRBxRvFxBrVakPUJC" 
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="maha mantras form "
-            data-height="975"
-            data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
-            data-form-id="iheeRBxRvFxBrVakPUJC"
-            title="maha mantras form "
-          ></iframe>
+        <div className="flex-1 overflow-y-auto scroll-smooth">
+          <div className="relative w-full" style={{ minHeight: '600px' }}>
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
+                />
+              </div>
+            )}
+            <iframe
+              onLoad={() => setIsLoading(false)}
+              src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+              style={{ 
+                width: '100%', 
+                height: '975px', 
+                border: 'none',
+                opacity: isLoading ? 0 : 1,
+                transition: 'opacity 0.4s ease-in-out',
+                display: 'block'
+              }}
+              id="inline-iheeRBxRvFxBrVakPUJC" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-activation-type="alwaysActivated"
+              data-form-name="maha mantras form "
+              data-height="975"
+              data-form-id="iheeRBxRvFxBrVakPUJC"
+              title="maha mantras form "
+            ></iframe>
+          </div>
         </div>
       </motion.div>
     </motion.div>
