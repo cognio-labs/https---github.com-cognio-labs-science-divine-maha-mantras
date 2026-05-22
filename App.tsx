@@ -826,34 +826,20 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        className="relative w-full max-w-[460px] bg-white rounded-[2rem] shadow-2xl border border-gold/20 flex flex-col max-h-[92vh] overflow-hidden text-maroon-dark"
+        className="relative w-full max-w-[460px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden text-maroon-dark"
       >
-        <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-[130] shadow-sm">
-          <div>
-            <h3 className="text-xl font-serif text-maroon-dark">Register for Event</h3>
-            <div className="flex items-center gap-2 mt-1">
-              <p className="text-[10px] text-gold-muted font-bold uppercase tracking-[0.2em]">Fill all details below</p>
-              <motion.div
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <Anchor size={12} className="text-gold rotate-180" />
-              </motion.div>
-            </div>
-          </div>
-          <button 
-            onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 rounded-full transition-all text-maroon-dark border border-gray-100"
-            aria-label="Close"
-          >
-            <X size={20} />
-          </button>
-        </div>
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 z-[130] w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white backdrop-blur-md rounded-full transition-all text-maroon-dark shadow-lg border border-maroon-dark/5"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
         
-        <div className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar bg-gray-50 p-2">
-          <div className="relative w-full bg-white rounded-xl shadow-inner overflow-hidden" style={{ minHeight: '971px' }}>
+        <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '90vh' }}>
+          <div className="relative w-full bg-white">
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10 min-h-[400px]">
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -866,9 +852,8 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               style={{ 
                 width: '100%', 
-                height: '100%', 
+                height: '820px', 
                 border: 'none',
-                borderRadius: '10px',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
                 display: 'block'
@@ -888,7 +873,6 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               title="maha mantras form "
             ></iframe>
           </div>
-          <div className="h-10 w-full" />
         </div>
       </motion.div>
     </motion.div>
