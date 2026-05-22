@@ -793,21 +793,105 @@ const Footer = () => {
   );
 };
 
+const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsLoading(true);
+      if (!document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = "https://link.msgsndr.com/js/form_embed.js";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = 'unset'; };
+    }
+  }, [isOpen]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
+    >
+      <div 
+        className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-md" 
+        onClick={onClose} 
+      />
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.98, y: 10 }}
+        className="relative w-full max-w-[500px] bg-white rounded-[18px] shadow-2xl overflow-hidden text-maroon-dark"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 z-[130] w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white backdrop-blur-md rounded-full transition-all text-maroon-dark shadow-lg border border-maroon-dark/5"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
+        
+        <div className="overflow-hidden" style={{ width: '100%', maxWidth: '500px', margin: 'auto' }}>
+          <div className="relative w-full bg-white">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10 min-h-[400px]">
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
+                />
+              </div>
+            )}
+            <iframe
+              onLoad={() => setIsLoading(false)}
+              src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+              style={{ 
+                width: '100%', 
+                height: '720px', 
+                border: 'none',
+                borderRadius: '18px',
+                background: 'white',
+                overflow: 'hidden',
+                display: 'block',
+                opacity: isLoading ? 0 : 1,
+                transition: 'opacity 0.4s ease-in-out',
+              }}
+              id="popup-iheeRBxRvFxBrVakPUJC"
+              data-layout="{'id':'POPUP'}"
+              data-trigger-type="showAfter"
+              data-trigger-value="3"
+              data-activation-type="alwaysActivated"
+              data-deactivation-value=""
+              data-form-name="maha mantras form"
+              data-layout-iframe-id="popup-iheeRBxRvFxBrVakPUJC"
+              data-form-id="iheeRBxRvFxBrVakPUJC"
+              title="maha mantras form"
+              data-modal-height="720"
+            ></iframe>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 // --- Main App ---
 
 export default function App() {
   const preorderLink = 'https://amzn.in/d/0cR0rBnu';
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
       <Navbar onOpenModal={() => window.open(preorderLink, '_blank')} />
       <Hero 
         onOpenModal={() => window.open(preorderLink, '_blank')} 
-        onRegisterClick={() => {
-          // The new POPUP code is set to show automatically after 3 seconds.
-          // We can also trigger it manually if the LeadConnector script supports it.
-          console.log('Register button clicked - Popup handled by LeadConnector script');
-        }}
+        onRegisterClick={() => setIsRegisterModalOpen(true)}
       />
       <AuthorSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <AuthoritySection />
@@ -818,25 +902,14 @@ export default function App() {
       <FinalImpact />
       <Footer />
 
-      {/* LeadConnector POPUP Embed Code */}
-      <iframe
-        src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-        style={{ display: 'none', width: '100%', height: '100%', border: 'none', borderRadius: '10px' }}
-        id="popup-iheeRBxRvFxBrVakPUJC" 
-        data-layout="{'id':'POPUP'}"
-        data-trigger-type="showAfter"
-        data-trigger-value="3"
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="leadCollected"
-        data-deactivation-value=""
-        data-form-name="maha mantras form "
-        data-height="undefined"
-        data-layout-iframe-id="popup-iheeRBxRvFxBrVakPUJC"
-        data-form-id="iheeRBxRvFxBrVakPUJC"
-        title="maha mantras form "
-        data-modal-height="500"
-      ></iframe>
+      <AnimatePresence>
+        {isRegisterModalOpen && (
+          <RegisterModal 
+            isOpen={isRegisterModalOpen} 
+            onClose={() => setIsRegisterModalOpen(false)} 
+          />
+        )}
+      </AnimatePresence>
       <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     </div>
   );
