@@ -176,7 +176,7 @@ const Hero = ({ onOpenModal, onRegisterClick }: { onOpenModal: () => void; onReg
               onClick={onRegisterClick}
               className="w-full sm:w-auto px-10 py-5 border border-parchment/20 text-parchment font-bold uppercase tracking-widest rounded-full hover:bg-white/5 active:scale-95"
             >
-              Register for future event
+              Register for future events
             </button>
           </div>
         </motion.div>
