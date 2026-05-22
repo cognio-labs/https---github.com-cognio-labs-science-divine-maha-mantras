@@ -815,10 +815,10 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
     >
       <div 
-        className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-sm" 
+        className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-md" 
         onClick={onClose} 
       />
       
@@ -826,18 +826,32 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        className="relative w-full max-w-md bg-white rounded-2xl md:rounded-3xl shadow-2xl border border-gold/20 flex flex-col max-h-[85vh] overflow-hidden text-maroon-dark"
+        className="relative w-full max-w-[460px] bg-white rounded-[2rem] shadow-2xl border border-gold/20 flex flex-col max-h-[92vh] overflow-hidden text-maroon-dark"
       >
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 z-[120] w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white backdrop-blur-md rounded-full transition-all text-maroon-dark shadow-lg border border-maroon-dark/5"
-          aria-label="Close"
-        >
-          <X size={20} />
-        </button>
+        <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-[130] shadow-sm">
+          <div>
+            <h3 className="text-xl font-serif text-maroon-dark">Register for Event</h3>
+            <div className="flex items-center gap-2 mt-1">
+              <p className="text-[10px] text-gold-muted font-bold uppercase tracking-[0.2em]">Fill all details below</p>
+              <motion.div
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <Anchor size={12} className="text-gold rotate-180" />
+              </motion.div>
+            </div>
+          </div>
+          <button 
+            onClick={onClose}
+            className="w-10 h-10 flex items-center justify-center bg-gray-50 hover:bg-gray-100 rounded-full transition-all text-maroon-dark border border-gray-100"
+            aria-label="Close"
+          >
+            <X size={20} />
+          </button>
+        </div>
         
-        <div className="flex-1 overflow-y-auto scroll-smooth">
-          <div className="relative w-full" style={{ minHeight: '600px' }}>
+        <div className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar bg-gray-50 p-2">
+          <div className="relative w-full bg-white rounded-xl shadow-inner overflow-hidden" style={{ minHeight: '971px' }}>
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
                 <motion.div 
@@ -852,7 +866,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               style={{ 
                 width: '100%', 
-                height: '975px', 
+                height: '971px', 
                 border: 'none',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
@@ -861,13 +875,19 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               id="inline-iheeRBxRvFxBrVakPUJC" 
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
+              data-trigger-value=""
               data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
               data-form-name="maha mantras form "
-              data-height="975"
+              data-height="971"
+              data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
               data-form-id="iheeRBxRvFxBrVakPUJC"
               title="maha mantras form "
             ></iframe>
           </div>
+          <div className="h-10 w-full" />
         </div>
       </motion.div>
     </motion.div>
