@@ -836,8 +836,8 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="overflow-y-auto custom-scrollbar flex-1" style={{ maxHeight: '92vh' }}>
-          <div className="relative w-full bg-white pb-6">
+        <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '95vh' }}>
+          <div className="relative w-full bg-white">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10 min-h-[400px]">
                 <motion.div 
@@ -852,7 +852,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               style={{ 
                 width: '100%', 
-                height: '645px', 
+                height: '880px', 
                 border: 'none',
                 borderRadius: '10px',
                 opacity: isLoading ? 0 : 1,
@@ -868,7 +868,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="maha mantras form "
-              data-height="645"
+              data-height="880"
               data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
               data-form-id="iheeRBxRvFxBrVakPUJC"
               title="maha mantras form "
