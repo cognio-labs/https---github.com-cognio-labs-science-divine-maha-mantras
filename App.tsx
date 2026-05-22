@@ -826,7 +826,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        className="relative w-full max-w-[460px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden text-maroon-dark"
+        className="relative w-full max-w-[500px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden text-maroon-dark"
       >
         <button 
           onClick={onClose}
@@ -836,8 +836,8 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '90vh' }}>
-          <div className="relative w-full bg-white">
+        <div className="overflow-y-auto custom-scrollbar flex-1" style={{ maxHeight: '92vh' }}>
+          <div className="relative w-full bg-white pb-[50px]">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10 min-h-[400px]">
                 <motion.div 
@@ -852,7 +852,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               style={{ 
                 width: '100%', 
-                height: '820px', 
+                height: '1100px', 
                 border: 'none',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
