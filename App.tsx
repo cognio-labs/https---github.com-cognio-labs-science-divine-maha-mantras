@@ -40,6 +40,15 @@ const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: 'Author', href: '#author' },
     { name: 'The Book', href: '#book' },
@@ -96,20 +105,21 @@ const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 bg-maroon-dark z-[60] flex flex-col p-8"
+            className="fixed top-0 left-0 w-full h-[100dvh] bg-[#4A0404] z-[9999] flex flex-col items-center justify-center p-8"
           >
-            <div className="flex justify-end mb-12">
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-parchment">
-                <X size={32} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-8">
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className="absolute top-6 right-6 p-2 text-parchment hover:text-gold transition-colors"
+            >
+              <X size={32} />
+            </button>
+            <div className="flex flex-col items-center gap-8 w-full max-w-sm">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-serif text-4xl text-parchment hover:text-gold transition-colors"
+                  className="font-serif text-4xl text-parchment hover:text-gold transition-colors text-center w-full"
                 >
                   {link.name}
                 </a>
@@ -119,7 +129,7 @@ const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
                   setIsMobileMenuOpen(false);
                   onOpenModal();
                 }}
-                className="mt-8 px-8 py-4 bg-gold text-maroon-dark text-lg uppercase font-bold tracking-widest rounded-full"
+                className="mt-4 px-10 py-5 bg-gold text-maroon-dark text-lg uppercase font-bold tracking-widest rounded-full w-full"
               >
                 Pre-Order Now
               </button>
@@ -137,7 +147,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
   const rotate = useTransform(scrollY, [0, 500], [0, 15]);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden sacred-grid bg-maroon-dark">
+    <section className="relative z-0 min-h-screen flex items-center pt-20 overflow-hidden sacred-grid bg-maroon-dark">
       <div className="max-w-7xl mx-auto px-4 md:px-6 w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10 py-16 md:py-20">
         
         {/* Left Content: Text */}
@@ -163,7 +173,6 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
               Pre-Order Now
             </button>
             <button 
-              onClick={() => document.getElementById('chapters')?.scrollIntoView({ behavior: 'smooth' })}
               className="w-full sm:w-auto px-10 py-5 border border-parchment/20 text-parchment font-bold uppercase tracking-widest rounded-full hover:bg-white/5 active:scale-95"
             >
               Register for event
@@ -203,11 +212,11 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
   );
 };
 
-const AuthorSection = () => {
+const AuthorSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
   return (
     <section id="author" className="py-20 md:py-24 px-4 md:px-6 bg-maroon-dark text-parchment relative overflow-hidden border-t border-gold/5">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16 relative z-10">
-        <div className="w-full md:w-5/12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16 relative z-10">
+        <div className="w-full md:w-5/12 pt-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -230,17 +239,26 @@ const AuthorSection = () => {
             viewport={{ once: true }}
           >
             <span className="text-gold uppercase tracking-[0.3em] text-xs mb-4 block font-bold">The Enlightened Master</span>
-            <h2 className="text-4xl md:text-7xl font-serif mb-8 text-parchment">Sakshi Shree</h2>
-            <p className="text-xl text-parchment/70 font-light leading-relaxed mb-8">
-              Born Rām Krishna Upādhyāya, Sakshi Shree is a rare triad: an enlightened master, a householder, and a former civil servant. 
-              Mentored by Swami Sudarshanacharya Ji Maharaj, he bridges the gap between ancient Himalayan wisdom and the modern boardroom.
-            </p>
+            <div className="space-y-4 mb-8">
+              <p className="text-xl text-parchment/70 font-light leading-relaxed">
+                Sakshi Shree is an enlightened spiritual master whose teachings unite ancient wisdom with practical living. Through meditation, self-awareness, and direct inner experience, he guides seekers toward peace, clarity, and self-realization.
+              </p>
+              <p className="text-xl text-parchment/70 font-light leading-relaxed">
+                Sadguru Sakshi Shree teaches that spirituality is not escape from life, but a way of living with awareness, balance, and joy. His message inspires people to discover inner freedom while fulfilling their responsibilities in the world.
+              </p>
+              <p className="text-xl text-parchment/70 font-light leading-relaxed">
+                Through his spiritual guidance, countless seekers have experienced deeper understanding, inner transformation, and a closer connection with the eternal wisdom of the Bhagavad Gita.
+              </p>
+              <p className="text-xl text-parchment/70 font-light leading-relaxed">
+                For the Gita Mahamantras platform, the vision is to make the sacred mantras of the Gita a living force—bringing peace to the mind, purity to the heart, and awakening to the soul.
+              </p>
+            </div>
             <p className="text-lg text-parchment/60 font-light leading-relaxed mb-12 italic border-l-4 border-gold/30 pl-8">
               "I do not teach any religion; I bring out the best of philosophies to enhance the lives of those I touch. 
-              The battlefield of Kurukshetra has not disappeared—it has only multiplied. It now exists within every individual navigating ambition and conscience."
+              The battlefield of Kurukshetra has not disappeared it has only multiplied. It now exists within every individual navigating ambition and conscience."
             </p>
             <button 
-              onClick={() => document.getElementById('preorder')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={onOpenModal}
               className="mb-10 px-10 py-4 bg-gold text-maroon-dark font-bold uppercase tracking-widest rounded-full hover:scale-105 transition-transform"
             >
               Reserve Your Copy
@@ -588,39 +606,35 @@ In an age of information overload, anxiety and identity confusion, this book is 
               initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 40 }}
-              className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+              className="relative w-full max-w-4xl bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[92vh] md:max-h-[85vh] mx-auto"
             >
               <button 
                 onClick={() => setSelectedEndorsement(null)}
-                className="absolute top-4 right-4 z-20 p-2 bg-maroon-dark/10 hover:bg-maroon-dark/20 rounded-full text-maroon-dark"
+                className="absolute top-4 right-4 z-30 p-2.5 bg-maroon-dark/5 hover:bg-maroon-dark/10 backdrop-blur-md rounded-full text-maroon-dark transition-colors"
               >
-                <X size={24} />
+                <X size={20} className="md:w-6 md:h-6" />
               </button>
 
-              <div className="w-full md:w-2/5 relative h-64 md:h-auto">
+              <div className="w-full md:w-2/5 relative h-52 sm:h-60 md:h-auto bg-gradient-to-b from-white to-gray-50 flex items-end justify-center pt-8 md:pt-0 shrink-0">
                 <img 
                   src={selectedEndorsement.image} 
                   alt={selectedEndorsement.name} 
-                  className="w-full h-full object-cover"
+                  className="w-[80%] sm:w-[70%] md:w-full h-full object-contain object-bottom md:object-cover md:object-top drop-shadow-xl"
                 />
-                <div className="absolute bottom-6 left-6 right-6 md:hidden">
-                  <h3 className="text-white font-serif text-3xl mb-1">{selectedEndorsement.name}</h3>
-                  <p className="text-gold text-xs uppercase tracking-widest">{selectedEndorsement.title}</p>
-                </div>
               </div>
 
-              <div className="flex-1 p-8 md:p-12 overflow-y-auto text-maroon-dark custom-scrollbar">
-                <div className="hidden md:block mb-8">
-                  <h3 className="text-4xl font-serif mb-2">{selectedEndorsement.name}</h3>
-                  <p className="text-gold-muted text-sm uppercase tracking-[0.2em] font-medium">{selectedEndorsement.title}</p>
-                  <div className="w-20 h-px bg-gold/30 mt-6" />
+              <div className="flex-1 p-6 sm:p-8 md:p-12 overflow-y-auto text-maroon-dark custom-scrollbar bg-white">
+                <div className="mb-6 md:mb-8 text-center md:text-left">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 md:mb-2 text-maroon-dark leading-tight">{selectedEndorsement.name}</h3>
+                  <p className="text-gold-muted text-[10px] sm:text-xs md:text-sm uppercase tracking-widest font-bold leading-relaxed max-w-[280px] sm:max-w-none mx-auto md:mx-0">{selectedEndorsement.title}</p>
+                  <div className="w-12 sm:w-16 md:w-20 h-px bg-gold/40 mt-5 md:mt-6 mx-auto md:mx-0" />
                 </div>
                 
-                <h4 className="text-2xl font-serif italic text-maroon mb-8 leading-tight">
+                <h4 className="text-xl sm:text-2xl font-serif italic text-maroon mb-5 md:mb-8 leading-snug md:leading-tight text-center md:text-left">
                   "{selectedEndorsement.heading}"
                 </h4>
                 
-                <div className="space-y-6 text-maroon-dark/80 text-lg leading-relaxed font-light">
+                <div className="space-y-4 md:space-y-6 text-maroon-dark/80 text-base md:text-lg leading-relaxed font-light text-justify md:text-left">
                   {selectedEndorsement.text.split('\n\n').map((para, i) => (
                     <p key={i}>{para}</p>
                   ))}
@@ -879,7 +893,7 @@ export default function App() {
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
       <Navbar onOpenModal={() => window.open(preorderLink, '_blank')} />
       <Hero onOpenModal={() => window.open(preorderLink, '_blank')} />
-      <AuthorSection />
+      <AuthorSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <AuthoritySection />
       <ChaptersSection />
       <BenefitsSection />
