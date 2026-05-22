@@ -884,14 +884,17 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
 export default function App() {
   const preorderLink = 'https://amzn.in/d/0cR0rBnu';
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
       <Navbar onOpenModal={() => window.open(preorderLink, '_blank')} />
       <Hero 
         onOpenModal={() => window.open(preorderLink, '_blank')} 
-        onRegisterClick={() => setIsRegisterModalOpen(true)}
+        onRegisterClick={() => {
+          // LeadConnector Popups usually trigger automatically or via specific classes
+          // This button will now serve as a secondary trigger if the script supports it
+          console.log('Register button clicked - Popup handled by LeadConnector script');
+        }}
       />
       <AuthorSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <AuthoritySection />
@@ -902,14 +905,26 @@ export default function App() {
       <FinalImpact />
       <Footer />
 
-      <AnimatePresence>
-        {isRegisterModalOpen && (
-          <RegisterModal 
-            isOpen={isRegisterModalOpen} 
-            onClose={() => setIsRegisterModalOpen(false)} 
-          />
-        )}
-      </AnimatePresence>
+      {/* LeadConnector POPUP Embed Code */}
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+        style={{ display: 'none', width: '100%', height: '100%', border: 'none', borderRadius: '10px' }}
+        id="popup-iheeRBxRvFxBrVakPUJC" 
+        data-layout="{'id':'POPUP'}"
+        data-trigger-type="showAfter"
+        data-trigger-value="3"
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="leadCollected"
+        data-deactivation-value=""
+        data-form-name="maha mantras form "
+        data-height="undefined"
+        data-layout-iframe-id="popup-iheeRBxRvFxBrVakPUJC"
+        data-form-id="iheeRBxRvFxBrVakPUJC"
+        title="maha mantras form "
+        data-modal-height="500"
+      ></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     </div>
   );
 }
