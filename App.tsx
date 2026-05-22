@@ -836,34 +836,36 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="ghl-form-wrap w-full flex justify-center items-center p-2 sm:p-5 box-border bg-[#690000]">
-          <div className="relative w-full flex justify-center items-center">
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[500px]">
-                <motion.div 
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
-                />
-              </div>
-            )}
-            <iframe
-              onLoad={() => setIsLoading(false)}
-              src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-              id="inline-iheeRBxRvFxBrVakPUJC"
-              scrolling="yes"
-              className="w-full max-w-[520px] block m-auto overflow-hidden bg-white"
-              style={{ 
-                border: 'none',
-                borderRadius: '20px',
-                opacity: isLoading ? 0 : 1,
-                transition: 'opacity 0.4s ease-in-out',
-                height: window.innerWidth <= 768 ? '1100px' : '1050px'
-              }}
-              data-layout="{'id':'INLINE'}"
-              data-form-id="iheeRBxRvFxBrVakPUJC"
-              title="maha mantras form"
-            ></iframe>
+        <div className="overflow-y-auto custom-scrollbar flex-1" style={{ maxHeight: '96vh' }}>
+          <div className="ghl-form-wrap w-full flex justify-center items-center p-1 sm:p-4 box-border bg-[#690000]">
+            <div className="relative w-full flex justify-center items-center">
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[500px]">
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
+                  />
+                </div>
+              )}
+              <iframe
+                onLoad={() => setIsLoading(false)}
+                src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
+                id="inline-iheeRBxRvFxBrVakPUJC"
+                scrolling="yes"
+                className="w-full max-w-[520px] block m-auto overflow-hidden bg-white"
+                style={{ 
+                  border: 'none',
+                  borderRadius: '20px',
+                  opacity: isLoading ? 0 : 1,
+                  transition: 'opacity 0.4s ease-in-out',
+                  height: window.innerWidth <= 768 ? '1300px' : '1250px'
+                }}
+                data-layout="{'id':'INLINE'}"
+                data-form-id="iheeRBxRvFxBrVakPUJC"
+                title="maha mantras form"
+              ></iframe>
+            </div>
           </div>
         </div>
       </motion.div>
