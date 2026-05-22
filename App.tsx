@@ -141,7 +141,7 @@ const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
   );
 };
 
-const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
+const Hero = ({ onOpenModal, onRegisterClick }: { onOpenModal: () => void; onRegisterClick: () => void }) => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 100]);
   const rotate = useTransform(scrollY, [0, 500], [0, 15]);
@@ -173,6 +173,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
               Pre-Order Now
             </button>
             <button 
+              onClick={onRegisterClick}
               className="w-full sm:w-auto px-10 py-5 border border-parchment/20 text-parchment font-bold uppercase tracking-widest rounded-full hover:bg-white/5 active:scale-95"
             >
               Register for future event
@@ -792,7 +793,7 @@ const Footer = () => {
   );
 };
 
-const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -888,11 +889,15 @@ const PreOrderModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
 export default function App() {
   const preorderLink = 'https://amzn.in/d/0cR0rBnu';
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
       <Navbar onOpenModal={() => window.open(preorderLink, '_blank')} />
-      <Hero onOpenModal={() => window.open(preorderLink, '_blank')} />
+      <Hero 
+        onOpenModal={() => window.open(preorderLink, '_blank')} 
+        onRegisterClick={() => setIsRegisterModalOpen(true)}
+      />
       <AuthorSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <AuthoritySection />
       <ChaptersSection />
@@ -901,6 +906,15 @@ export default function App() {
       <PreOrderSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <FinalImpact />
       <Footer />
+
+      <AnimatePresence>
+        {isRegisterModalOpen && (
+          <RegisterModal 
+            isOpen={isRegisterModalOpen} 
+            onClose={() => setIsRegisterModalOpen(false)} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
