@@ -836,10 +836,10 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <X size={20} />
         </button>
         
-        <div className="ghl-form-wrap w-full flex justify-center items-center p-5 sm:p-8 box-border bg-[#690000]">
+        <div className="ghl-form-wrap w-full flex justify-center items-center p-2 sm:p-5 box-border bg-[#690000]">
           <div className="relative w-full flex justify-center items-center">
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[400px]">
+              <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[500px]">
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -851,15 +851,14 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               onLoad={() => setIsLoading(false)}
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               id="inline-iheeRBxRvFxBrVakPUJC"
-              scrolling="no"
-              className="w-full max-w-[520px] block m-auto overflow-hidden"
+              scrolling="yes"
+              className="w-full max-w-[520px] block m-auto overflow-hidden bg-white"
               style={{ 
                 border: 'none',
                 borderRadius: '20px',
-                background: '#fff',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
-                height: window.innerWidth <= 768 ? '1000px' : '950px'
+                height: window.innerWidth <= 768 ? '1100px' : '1050px'
               }}
               data-layout="{'id':'INLINE'}"
               data-form-id="iheeRBxRvFxBrVakPUJC"
