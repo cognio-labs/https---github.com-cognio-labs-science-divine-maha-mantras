@@ -815,7 +815,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
     >
       <div 
         className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-md" 
@@ -826,20 +826,20 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        className="relative w-full max-w-[500px] bg-white rounded-[20px] shadow-2xl overflow-hidden text-maroon-dark"
+        className="relative w-full max-w-[560px] bg-[#690000] rounded-[24px] shadow-2xl overflow-hidden text-maroon-dark"
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-[130] w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white backdrop-blur-md rounded-full transition-all text-maroon-dark shadow-lg border border-maroon-dark/5"
+          className="absolute top-4 right-4 z-[130] w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full transition-all text-white shadow-lg border border-white/10"
           aria-label="Close"
         >
           <X size={20} />
         </button>
         
-        <div className="ghl-form-wrap flex justify-center items-center p-5 box-border bg-white">
-          <div className="relative w-full">
+        <div className="ghl-form-container w-full flex justify-center items-center p-5 sm:p-8 box-border bg-[#690000]">
+          <div className="relative w-full flex justify-center items-center">
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white z-10 min-h-[400px]">
+              <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[400px]">
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -852,14 +852,14 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               id="inline-iheeRBxRvFxBrVakPUJC"
               scrolling="no"
-              className="w-full max-w-[500px] block m-auto overflow-hidden h-[650px] md:h-[650px] sm:h-[700px]"
+              className="w-full max-w-[520px] block m-auto overflow-hidden"
               style={{ 
                 border: 'none',
                 borderRadius: '20px',
                 background: '#fff',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
-                height: window.innerWidth <= 768 ? '700px' : '650px'
+                height: window.innerWidth <= 768 ? '900px' : '850px'
               }}
               data-layout="{'id':'INLINE'}"
               data-form-id="iheeRBxRvFxBrVakPUJC"
