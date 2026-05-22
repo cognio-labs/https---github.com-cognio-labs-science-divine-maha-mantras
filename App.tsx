@@ -866,8 +866,9 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
               style={{ 
                 width: '100%', 
-                height: '971px', 
+                height: '100%', 
                 border: 'none',
+                borderRadius: '10px',
                 opacity: isLoading ? 0 : 1,
                 transition: 'opacity 0.4s ease-in-out',
                 display: 'block'
@@ -881,7 +882,7 @@ const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="maha mantras form "
-              data-height="971"
+              data-height="undefined"
               data-layout-iframe-id="inline-iheeRBxRvFxBrVakPUJC"
               data-form-id="iheeRBxRvFxBrVakPUJC"
               title="maha mantras form "
