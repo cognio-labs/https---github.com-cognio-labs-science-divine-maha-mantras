@@ -793,97 +793,19 @@ const Footer = () => {
   );
 };
 
-const RegisterModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      if (!document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]')) {
-        const script = document.createElement('script');
-        script.src = "https://link.msgsndr.com/js/form_embed.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-      document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = 'unset'; };
-    }
-  }, [isOpen]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
-    >
-      <div 
-        className="absolute inset-0 bg-maroon-dark/98 backdrop-blur-md" 
-        onClick={onClose} 
-      />
-      
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        className="relative w-full max-w-[560px] bg-[#690000] rounded-[24px] shadow-2xl overflow-hidden text-maroon-dark"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 z-[130] w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full transition-all text-white shadow-lg border border-white/10"
-          aria-label="Close"
-        >
-          <X size={20} />
-        </button>
-        
-        <div className="ghl-form-container w-full flex justify-center items-center p-5 sm:p-8 box-border bg-[#690000]">
-          <div className="relative w-full flex justify-center items-center">
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#690000] z-10 min-h-[400px]">
-                <motion.div 
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="w-10 h-10 border-4 border-gold/20 border-t-gold rounded-full"
-                />
-              </div>
-            )}
-            <iframe
-              onLoad={() => setIsLoading(false)}
-              src="https://api.leadconnectorhq.com/widget/form/iheeRBxRvFxBrVakPUJC"
-              id="inline-iheeRBxRvFxBrVakPUJC"
-              scrolling="no"
-              className="w-full max-w-[520px] block m-auto overflow-hidden"
-              style={{ 
-                border: 'none',
-                borderRadius: '20px',
-                background: '#fff',
-                opacity: isLoading ? 0 : 1,
-                transition: 'opacity 0.4s ease-in-out',
-                height: window.innerWidth <= 768 ? '900px' : '850px'
-              }}
-              data-layout="{'id':'INLINE'}"
-              data-form-id="iheeRBxRvFxBrVakPUJC"
-              title="maha mantras form"
-            ></iframe>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
 // --- Main App ---
 
 export default function App() {
   const preorderLink = 'https://amzn.in/d/0cR0rBnu';
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   return (
     <div className="bg-maroon-dark text-parchment selection:bg-gold/30">
       <Navbar onOpenModal={() => window.open(preorderLink, '_blank')} />
       <Hero 
         onOpenModal={() => window.open(preorderLink, '_blank')} 
-        onRegisterClick={() => setIsRegisterModalOpen(true)}
+        onRegisterClick={() => {
+          // Form embed removed as requested
+        }}
       />
       <AuthorSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <AuthoritySection />
@@ -893,16 +815,6 @@ export default function App() {
       <PreOrderSection onOpenModal={() => window.open(preorderLink, '_blank')} />
       <FinalImpact />
       <Footer />
-
-      <AnimatePresence>
-        {isRegisterModalOpen && (
-          <RegisterModal 
-            isOpen={isRegisterModalOpen} 
-            onClose={() => setIsRegisterModalOpen(false)} 
-          />
-        )}
-      </AnimatePresence>
-      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     </div>
   );
 }
